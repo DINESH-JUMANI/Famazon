@@ -44,9 +44,18 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     arguments: orderData,
                   );
                 },
-                child: SizedBox(
-                  height: 140,
-                  child: SingleProduct(image: orderData.products[0].images[0]),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 140,
+                      child:
+                          SingleProduct(image: orderData.products[0].images[0]),
+                    ),
+                    Text(
+                      orderData.userId,
+                      style: const TextStyle(fontSize: 12.5),
+                    ),
+                  ],
                 ),
               );
             },

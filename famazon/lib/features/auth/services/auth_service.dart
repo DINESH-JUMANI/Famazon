@@ -12,6 +12,40 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
+  void updateUser(User user, BuildContext context) async {
+    User userNew = User(
+      id: '',
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      address: '',
+      type: 'admin',
+      token: '',
+      cart: [],
+    );
+    try {
+      http.Response res = await http.post(
+        Uri.parse('$uri/api/signup'),
+        body: userNew.toJson(),
+        headers: <String, String>{
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      );
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          showSnackBar(
+            context,
+            'Successfully Changed to Seller',
+          );
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
   void signUpUser({
     required BuildContext context,
     required String email,
@@ -87,7 +121,7 @@ class AuthService {
     }
   }
 
-  // get user data
+// get user data
 
   void getUserData(
     BuildContext context,

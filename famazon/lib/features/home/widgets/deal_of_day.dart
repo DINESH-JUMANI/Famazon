@@ -85,13 +85,14 @@ class _DealOfDayState extends State<DealOfDay> {
                           padding: const EdgeInsets.only(left: 15),
                           child: Text(
                             "₹${product!.price}",
+                            overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 2),
                       ],
                     ),
                     Container(

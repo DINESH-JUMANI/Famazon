@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:famazon/common/widgets/custom_button.dart';
 import 'package:famazon/contsants/global_variables.dart';
 import 'package:famazon/features/admin/services/admin_services.dart';
@@ -35,6 +37,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   // !!! ONLY FOR ADMIN
   void changeOrderStatus(int status) {
+    if (status >= 4) return;
     adminServices.changeOrderStatus(
         context: context,
         status: status + 1,
@@ -225,7 +228,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 child: Stepper(
                   currentStep: currentStep,
                   controlsBuilder: (context, details) {
-                    if (user.type == 'admin') {
+                    if (user.type == 'admin' && currentStep <= 3) {
+                      log(currentStep.toString());
                       return CustomButton(
                           text: 'Done',
                           onTap: () => changeOrderStatus(details.currentStep));
@@ -263,8 +267,17 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       title: const Text('Delivered'),
                       content: const Text(
                           'Your order has been delivered and signed by you!'),
-                      isActive: currentStep >= 3,
-                      state: currentStep >= 3
+                      isActive: currentStep > 3,
+                      state: currentStep > 3
+                          ? StepState.complete
+                          : StepState.indexed,
+                    ),
+                    Step(
+                      title: const Text('Process Completed'),
+                      content:
+                          const Text('Process Is completed for this Product'),
+                      isActive: currentStep == 4,
+                      state: currentStep == 4
                           ? StepState.complete
                           : StepState.indexed,
                     ),
