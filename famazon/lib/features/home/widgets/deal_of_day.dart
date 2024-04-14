@@ -52,47 +52,47 @@ class _DealOfDayState extends State<DealOfDay> {
                         'Deal of the day',
                         style: TextStyle(
                           fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
+                    const SizedBox(height: 10),
                     Image.network(
                       product!.images[0],
                       height: 235,
                       fit: BoxFit.fitHeight,
                     ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: const EdgeInsets.only(left: 15),
-                      child: const Text(
-                        '₹100',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding:
-                          const EdgeInsets.only(left: 15, top: 5, right: 40),
-                      child: const Text(
-                        'Dinesh',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: product!.images
-                            .map(
-                              (e) => Image.network(
-                                e,
-                                fit: BoxFit.fitWidth,
-                                width: 100,
-                                height: 100,
-                              ),
-                            )
-                            .toList(),
-                      ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          alignment: Alignment.topLeft,
+                          padding: const EdgeInsets.only(
+                              left: 15, top: 5, right: 40),
+                          child: Text(
+                            product!.name,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text(
+                            "₹${product!.price}",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                      ],
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 15)

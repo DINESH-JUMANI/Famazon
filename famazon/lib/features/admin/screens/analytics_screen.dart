@@ -1,8 +1,11 @@
 import 'package:famazon/common/widgets/loader.dart';
+import 'package:famazon/features/account/services/account_services.dart';
+import 'package:famazon/features/account/widgets/account_button.dart';
 import 'package:famazon/features/admin/models/sales.dart';
 import 'package:famazon/features/admin/services/admin_services.dart';
 import 'package:famazon/features/admin/widgets/category_products_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({Key? key}) : super(key: key);
@@ -42,6 +45,15 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 ),
               ),
               const CategoryProductsChart(),
+              const SizedBox(height: 20),
+              SizedBox(
+                height: 50,
+                width: 200,
+                child: AccountButton(
+                  text: 'Log Out',
+                  onPressed: () => AccountServices().logOut(context),
+                ),
+              ),
             ],
           );
   }

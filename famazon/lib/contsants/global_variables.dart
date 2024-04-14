@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'https://blue-mysterious-crocodile.cyclic.app/';
+String uri = 'http://192.168.1.5:3000';
 
 class GlobalVariables {
   static const appBarGradient = LinearGradient(

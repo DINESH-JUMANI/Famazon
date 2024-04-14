@@ -9,7 +9,11 @@ class CategoryProductsChart extends StatelessWidget {
       height: 250,
       width: double.infinity,
       color: Colors.grey.shade100,
-      child: const Text('Chart to be added here!'),
+      child: const Center(
+          child: Text(
+        'Chart to be added here!',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      )),
     );
   }
 }
